@@ -3,7 +3,7 @@ import './IssueState.css';
 
 const IssueState = ({id, transition, changeState}) => {
   return (
-    <div className="issue-state" onClick={() => changeState(id, transition.name)}>
+    <div className="issue__state-changer-state" onClick={() => changeState(id, transition.name)}>
       {transition.description}
     </div>
   );

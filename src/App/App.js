@@ -40,7 +40,7 @@ class App extends Component {
     if (this.canAddIssue(currentIssue)) {
       currentIssue.id = new Date().getTime();
       currentIssue.state = states.OPEN;
-      issues.push(currentIssue);
+      issues.unshift(currentIssue);
       this.setState({
         issues,
         currentIssue: this.getInitialIssue()
@@ -82,7 +82,10 @@ class App extends Component {
           handleNewIssue={(e) => this.handleNewIssue(e.target)} 
           addCurrentIssue={this.addCurrentIssue} 
           currentIssue={this.state.currentIssue} />
-        <IssueList issues={this.state.issues} changeState={(id, transition) => this.changeState(id, transition)} handleStateEdit={(id) => this.handleStateEdit(id)} />
+        <IssueList 
+          issues={this.state.issues} 
+          changeState={(id, transition) => this.changeState(id, transition)} 
+          handleStateEdit={(id) => this.handleStateEdit(id)} />
       </section>
     );
   }
