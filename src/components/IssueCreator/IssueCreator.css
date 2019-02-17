@@ -24,6 +24,7 @@
   color: #fff;
   background-color: #1b92dc;
   width: 20vw;
+  border-radius: .5rem;
 }
 
 .issue-creator__btn:hover {

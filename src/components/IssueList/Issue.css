@@ -21,6 +21,11 @@
   font-size: 1.5rem;
 }
 
+.issue__state-container {
+  display: flex;
+  align-items: center;
+}
+
 .issue__state {
   color: #fff;
   font-size: 1.5rem;
@@ -33,10 +38,22 @@
   background-color: #008000;
 }
 
+.issue__state--open:hover {
+  background-color: #089f08;
+}
+
 .issue__state--pending {
   background-color: #ff9100;
 }
 
+.issue__state--pending:hover {
+  background-color: #f1941a;
+}
+
 .issue__state--closed {
   background-color: #6c6b6b;
+}
+
+.issue__state--closed:hover {
+  background-color: #a0a0a0;
 }

@@ -13,10 +13,8 @@ class App extends Component {
       currentIssue: this.getInitialIssue()
     };
 
-    this.getInitialIssue = this.getInitialIssue.bind(this);
     this.handleNewIssue = this.handleNewIssue.bind(this);
     this.addCurrentIssue = this.addCurrentIssue.bind(this);
-    this.canAddIssue = this.canAddIssue.bind(this);
     this.changeState = this.changeState.bind(this);
   }
 
@@ -25,7 +23,8 @@ class App extends Component {
       id: null,
       title: '',
       description: '',
-      state: ''
+      state: '',
+      stateEdit: false
     };
   }
 
@@ -53,11 +52,23 @@ class App extends Component {
     return issue.title && issue.description;
   }
 
-  changeState(id) {
+  changeState(id, transitionName) {
     const issues = [...this.state.issues]; 
     issues.forEach(i => {
       if (i.id == id) {
-        stateMachine.changeState(i); 
+        stateMachine.doTransition(i, transitionName); 
+        this.handleStateEdit(id);
+      };
+    });
+
+    this.setState({issues});
+  }
+
+  handleStateEdit(id) {
+    const issues = [...this.state.issues];
+    issues.forEach(i => {
+      if (i.id == id) {
+        i.stateEdit = !i.stateEdit;
       };
     });
 
@@ -71,7 +82,7 @@ class App extends Component {
           handleNewIssue={(e) => this.handleNewIssue(e.target)} 
           addCurrentIssue={this.addCurrentIssue} 
           currentIssue={this.state.currentIssue} />
-        <IssueList issues={this.state.issues} changeState={(id) => this.changeState(id)} />
+        <IssueList issues={this.state.issues} changeState={(id, transition) => this.changeState(id, transition)} handleStateEdit={(id) => this.handleStateEdit(id)} />
       </section>
     );
   }
