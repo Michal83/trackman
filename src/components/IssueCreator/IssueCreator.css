@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(202, 202, 202, 0.2);
+  border-radius: .5rem;
 }
 
 .issue-creator__caption {
@@ -11,7 +13,7 @@
 
 .issue-creator__title,
 .issue-creator__description {
-  width: 80vw;
+  width: 70vw;
   padding: 1rem;
   margin: .5rem;
 }

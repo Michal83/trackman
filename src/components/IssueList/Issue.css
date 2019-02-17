@@ -1,0 +1,18 @@
+.issue {
+  border: .1rem solid rgba(27, 146, 220, .3);
+  border-radius: .5rem;
+  width: 90%;
+  margin: 2rem;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.issue__info-title {
+  font-size: 2rem;
+}
+
+.issue__info-description {
+  font-size: 1.5rem;
+}
