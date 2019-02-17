@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import IssueCreator from '../components/IssueCreator/IssueCreator';
 import IssueList from '../components/IssueList/IssueList';
 
-import states from '../businessLogic/states';
+import {states, stateMachine} from '../businessLogic/stateManager';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      issues: [{id: 'Yo' ,title: 'Initial issue', description: 'Some description', state: 'Open'}],
+      issues: [],
       currentIssue: this.getInitialIssue()
     };
 
@@ -17,6 +17,7 @@ class App extends Component {
     this.handleNewIssue = this.handleNewIssue.bind(this);
     this.addCurrentIssue = this.addCurrentIssue.bind(this);
     this.canAddIssue = this.canAddIssue.bind(this);
+    this.changeState = this.changeState.bind(this);
   }
 
   getInitialIssue() {
@@ -38,7 +39,7 @@ class App extends Component {
     let currentIssue = {...this.state.currentIssue};
     let issues = [...this.state.issues];
     if (this.canAddIssue(currentIssue)) {
-      currentIssue.id = currentIssue.title + currentIssue.description;
+      currentIssue.id = new Date().getTime();
       currentIssue.state = states.OPEN;
       issues.push(currentIssue);
       this.setState({
@@ -49,7 +50,18 @@ class App extends Component {
   }
 
   canAddIssue(issue) {
-    return issue.title != '' && issue.description != '';
+    return issue.title && issue.description;
+  }
+
+  changeState(id) {
+    const issues = [...this.state.issues]; 
+    issues.forEach(i => {
+      if (i.id == id) {
+        stateMachine.changeState(i); 
+      };
+    });
+
+    this.setState({issues});
   }
 
   render() {
@@ -59,7 +71,7 @@ class App extends Component {
           handleNewIssue={(e) => this.handleNewIssue(e.target)} 
           addCurrentIssue={this.addCurrentIssue} 
           currentIssue={this.state.currentIssue} />
-        <IssueList issues={this.state.issues} />
+        <IssueList issues={this.state.issues} changeState={(id) => this.changeState(id)} />
       </section>
     );
   }

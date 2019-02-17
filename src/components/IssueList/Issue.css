@@ -2,11 +2,15 @@
   border: .1rem solid rgba(27, 146, 220, .3);
   border-radius: .5rem;
   width: 90%;
-  margin: 2rem;
+  margin: 2rem 2rem 0;
   padding: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.issue--closed {
+  opacity: .5;
 }
 
 .issue__info-title {
@@ -15,4 +19,24 @@
 
 .issue__info-description {
   font-size: 1.5rem;
+}
+
+.issue__state {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.issue__state--open {
+  background-color: #008000;
+}
+
+.issue__state--pending {
+  background-color: #ff9100;
+}
+
+.issue__state--closed {
+  background-color: #6c6b6b;
 }
