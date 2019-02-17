@@ -1,0 +1,29 @@
+.issue-creator {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.issue-creator__caption {
+  text-transform: uppercase;
+}
+
+.issue-creator__title,
+.issue-creator__description {
+  width: 80vw;
+  padding: 1rem;
+  margin: .5rem;
+}
+
+.issue-creator__btn {
+  margin: 2rem;
+  padding: 1rem;
+  color: #fff;
+  background-color: #1b92dc;
+  width: 20vw;
+}
+
+.issue-creator__btn:hover {
+  background-color: #3ca7e9;
+}
