@@ -10,11 +10,11 @@ class App extends Component {
     super(props);
     this.state = {
       issues: [],
-      currentIssue: this.getInitialIssue()
+      newIssue: this.getInitialIssue()
     };
 
     this.handleNewIssue = this.handleNewIssue.bind(this);
-    this.addCurrentIssue = this.addCurrentIssue.bind(this);
+    this.addNewIssue = this.addNewIssue.bind(this);
     this.changeState = this.changeState.bind(this);
   }
 
@@ -29,21 +29,21 @@ class App extends Component {
   }
 
   handleNewIssue(target) {
-    let currentIssue = {...this.state.currentIssue};
-    currentIssue[target.name] = target.value;
-    this.setState({currentIssue});
+    let newIssue = {...this.state.newIssue};
+    newIssue[target.name] = target.value;
+    this.setState({newIssue});
   }
 
-  addCurrentIssue() {
-    let currentIssue = {...this.state.currentIssue};
+  addNewIssue() {
+    let newIssue = {...this.state.newIssue};
     let issues = [...this.state.issues];
-    if (this.canAddIssue(currentIssue)) {
-      currentIssue.id = new Date().getTime();
-      currentIssue.state = states.OPEN;
-      issues.unshift(currentIssue);
+    if (this.canAddIssue(newIssue)) {
+      newIssue.id = new Date().getTime();
+      newIssue.state = states.OPEN;
+      issues.unshift(newIssue);
       this.setState({
         issues,
-        currentIssue: this.getInitialIssue()
+        newIssue: this.getInitialIssue()
       });
     }
   }
@@ -53,24 +53,26 @@ class App extends Component {
   }
 
   changeState(id, transitionName) {
-    const issues = [...this.state.issues]; 
-    issues.forEach(i => {
+    const issues = [...this.state.issues];
+    for (let i of issues) {
       if (i.id == id) {
         stateMachine.doTransition(i, transitionName); 
         this.handleStateEdit(id);
+        break;
       };
-    });
+    };
 
     this.setState({issues});
   }
 
   handleStateEdit(id) {
     const issues = [...this.state.issues];
-    issues.forEach(i => {
+    for (let i of issues) {
       if (i.id == id) {
         i.stateEdit = !i.stateEdit;
+        break;
       };
-    });
+    };
 
     this.setState({issues});
   }
@@ -80,8 +82,8 @@ class App extends Component {
       <section className="main">
         <IssueCreator 
           handleNewIssue={(e) => this.handleNewIssue(e.target)} 
-          addCurrentIssue={this.addCurrentIssue} 
-          currentIssue={this.state.currentIssue} />
+          addNewIssue={this.addNewIssue} 
+          newIssue={this.state.newIssue} />
         <IssueList 
           issues={this.state.issues} 
           changeState={(id, transition) => this.changeState(id, transition)} 

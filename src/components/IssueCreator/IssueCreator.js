@@ -10,18 +10,18 @@ const IssueCreator = (props) => {
         className="issue-creator__title" 
         name="title" 
         placeholder="Name your issue..." 
-        value={props.currentIssue.title} 
+        value={props.newIssue.title} 
         onChange={props.handleNewIssue}/>
       <input 
         type="text" 
         className="issue-creator__description" 
         name="description" 
         placeholder="Write some description..." 
-        value={props.currentIssue.description} 
+        value={props.newIssue.description} 
         onChange={props.handleNewIssue} />
       <div 
         className="btn issue-creator__btn" 
-        onClick={props.addCurrentIssue}>
+        onClick={props.addNewIssue}>
         Add
       </div>
     </div>
