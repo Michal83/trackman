@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Wrapper from '../containers/Wrapper/Wrapper';
+import Header from '../components/Header/Header';
 import IssueCreator from '../components/IssueCreator/IssueCreator';
 import IssueList from '../components/IssueList/IssueList';
 
@@ -70,8 +72,9 @@ class App extends Component {
     for (let i of issues) {
       if (i.id == id) {
         i.stateEdit = !i.stateEdit;
-        break;
-      };
+      } else {
+        i.stateEdit = false;
+      }
     };
 
     this.setState({issues});
@@ -79,16 +82,19 @@ class App extends Component {
 
   render() {
     return (
-      <section className="main">
-        <IssueCreator 
-          handleNewIssue={(e) => this.handleNewIssue(e.target)} 
-          addNewIssue={this.addNewIssue} 
-          newIssue={this.state.newIssue} />
-        <IssueList 
-          issues={this.state.issues} 
-          changeState={(id, transition) => this.changeState(id, transition)} 
-          handleStateEdit={(id) => this.handleStateEdit(id)} />
-      </section>
+      <Wrapper>
+        <Header />
+        <section className="main">
+          <IssueCreator 
+            handleNewIssue={(e) => this.handleNewIssue(e.target)} 
+            addNewIssue={this.addNewIssue} 
+            newIssue={this.state.newIssue} />
+          <IssueList 
+            issues={this.state.issues} 
+            changeState={(id, transition) => this.changeState(id, transition)} 
+            handleStateEdit={(id) => this.handleStateEdit(id)} />
+        </section>
+      </Wrapper>
     );
   }
 }

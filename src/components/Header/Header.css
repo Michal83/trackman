@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: inline-block;
+  text-align: center;
+  margin: 1rem 0 0;
+}
