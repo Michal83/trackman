@@ -17,7 +17,6 @@ The app will start on dev server.
 
 ## Build for production
 ```
-  $ npm install
   $ npm run build
 ```
 Then you need public and dist directory for production.
