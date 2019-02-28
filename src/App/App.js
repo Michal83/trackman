@@ -14,10 +14,6 @@ class App extends Component {
       issues: [],
       newIssue: this.getInitialIssue()
     };
-
-    this.handleNewIssue = this.handleNewIssue.bind(this);
-    this.addNewIssue = this.addNewIssue.bind(this);
-    this.changeState = this.changeState.bind(this);
   }
 
   getInitialIssue() {
@@ -87,7 +83,7 @@ class App extends Component {
         <section className="main">
           <IssueCreator 
             handleNewIssue={(e) => this.handleNewIssue(e.target)} 
-            addNewIssue={this.addNewIssue} 
+            addNewIssue={() => this.addNewIssue()} 
             newIssue={this.state.newIssue} />
           <IssueList 
             issues={this.state.issues} 
